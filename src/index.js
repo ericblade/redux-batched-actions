@@ -1,7 +1,7 @@
 export const BATCH = 'BATCHING_REDUCER.BATCH';
 
 export function batchActions(actions, type = BATCH) {
-	return {type, meta: { batch: true }, payload: actions}
+	return { type, meta: { batch: true }, payload: actions }
 }
 
 export function enableBatching(reduce) {
@@ -15,8 +15,8 @@ export function enableBatching(reduce) {
 
 export function batchDispatchMiddleware(store) {
 	function dispatchChildActions(store, action) {
-		if(action.meta && action.meta.batch) {
-			action.payload.forEach(function(childAction) {
+		if (action.meta && action.meta.batch) {
+			action.payload.forEach(function (childAction) {
 				dispatchChildActions(store, childAction)
 			})
 		} else {
@@ -24,12 +24,13 @@ export function batchDispatchMiddleware(store) {
 		}
 	}
 
-	return function(next) {
-		return function(action) {
+	return function (next) {
+		return function (action) {
 			if (action && action.meta && action.meta.batch) {
 				dispatchChildActions(store, action)
+			} else {
+				return next(action)
 			}
-			return next(action)
 		}
 	}
 }
