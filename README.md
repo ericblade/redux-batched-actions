@@ -67,18 +67,17 @@ In this example, the subscribers would be notified twice: once when the state is
 
 ### Middleware integration
 
-You can add a middleware to dispatch each of the bundled actions. This can be used if other middlewares are listening for one of the bundled actions to be dispatched.  
-**Note:** Only the middlewares *before* the batch middleware will receive each of the bundled actions. *All* middlewares will receive the batch action.
+You can add a middleware to dispatch each of the bundled actions. This can be used if other middlewares are listening for one of the bundled actions to be dispatched.
 
 ```js
 const store = createStore(
-		enableBatching(reducer),
+		reducer,
 		initialState,
-		applyMiddleware(middlewareThatNeedsEachBundledAction, batchDispatchMiddleware, middlewareThatDoesNotNeedEachBundledAction)
+		applyMiddleware(batchDispatchMiddleware)
 )
 ```
 
-`enableBatching` should still be used on the reducer as the reducer will only receive the batched action, not each bundled action.
+Note that batchDispatchMiddleware and enableBatching should not be used together as batchDispatchMiddleware calls next on the action it receives, whilst also dispatching each of the bundled actions.
 
 ## Thanks
 
