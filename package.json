@@ -1,6 +1,6 @@
 {
   "name": "@ericblade/redux-batched-actions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "redux higher order reducer + action creator to reduce actions under a single subscriber notification",
   "main": "lib/index.js",
   "unpkg": "dist/index.js",
