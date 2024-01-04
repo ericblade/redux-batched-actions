@@ -1,6 +1,6 @@
 {
   "name": "@ericblade/redux-batched-actions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "redux higher order reducer + action creator to reduce actions under a single subscriber notification",
   "main": "lib/index.js",
   "unpkg": "dist/index.js",
@@ -15,7 +15,9 @@
     "build:mjs": "npm run build:js -- --env-name mjs --out-dir es/ && npx -y js2mjs es/",
     "build:umd": "npm run build:js -- --env-name dist --out-dir dist/",
     "build": "npm run clean && npm run build:umd && npm run build:cjs && npm run build:mjs && npm run copy:ts",
-    "prepublishOnly": "npm run clean && npm run build"
+    "prepublishOnly": "npm run clean && npm run build",
+    "upgrade-deps": "npx -y npm-check-updates -interactive -u -x chai && npm install",
+    "upgrade-deps-auto": "npx -y npm-check-updates -d -u -x chai && npm install"
   },
   "repository": {
     "type": "git",
@@ -39,9 +41,9 @@
   "homepage": "https://github.com/tshelburne/redux-batched-actions",
   "devDependencies": {
     "@babel/cli": "^7.23.4",
-    "@babel/core": "^7.23.6",
-    "@babel/preset-env": "^7.23.6",
-    "@babel/register": "^7.22.15",
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.7",
+    "@babel/register": "^7.23.7",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "sinon": "^17.0.1",
